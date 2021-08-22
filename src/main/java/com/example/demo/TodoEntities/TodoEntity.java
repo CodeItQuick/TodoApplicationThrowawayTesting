@@ -1,9 +1,11 @@
-package com.example.demo;
+package com.example.demo.TodoEntities;
+
+import org.springframework.data.domain.AbstractAggregateRoot;
 
 import javax.persistence.*;
+
 @Entity
 public class TodoEntity {
-
 
     @Id
     @GeneratedValue(
@@ -13,16 +15,28 @@ public class TodoEntity {
 
     private String description;
 
-    protected TodoEntity() {
+    public TodoEntity() {
+
+    }
+    
+    public TodoEntity(String message) {
+
+        this.description = message;
     }
 
-    public TodoEntity(String description)
-    {
+    public TodoEntity(Long id, String description) {
+        this.id = id;
         this.description = description;
     }
+
     public Long getId() {
         return id;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getDescription() {
         return description;
     }
